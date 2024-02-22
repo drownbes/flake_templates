@@ -1,0 +1,50 @@
+cabal-version:  3.8
+
+name: rename-me
+version: 0.0.0.1
+license: BSD-3-Clause
+author: Artem Markov
+build-type: Simple
+
+common common-settings
+  ghc-options:        -Wall -threaded
+  default-language:   GHC2021
+  default-extensions:
+    OverloadedStrings
+    NoImplicitPrelude
+    StrictData
+    Strict
+
+library
+  import: common-settings
+  build-depends:
+    base >= 4 && < 5,
+    universum
+  hs-source-dirs: src
+  exposed-modules:
+    Lib
+  other-modules: 
+
+executable rename-me
+  import: common-settings
+  hs-source-dirs: app
+  main-is: Main.hs
+  build-depends:
+    base >= 4.2 && < 5,
+    rename-me,
+    universum
+
+
+test-suite test
+  import: common-settings
+  type:
+    exitcode-stdio-1.0
+  hs-source-dirs:
+    tests
+  main-is:
+    Main.hs
+  build-depends:
+      base >= 4 && < 5
+    , universum
+    , tasty >= 0.7
+    , tasty-hunit 
